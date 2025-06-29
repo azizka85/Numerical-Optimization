@@ -5,7 +5,7 @@ def eigenvalue_modification(
     x: np.ndarray[np.double],
     delta: np.double
 ) -> np.ndarray[np.double]:
-    lam, q = np.linalg.eig(B)
+    lam, q = np.linalg.eigh(B)
 
     y = np.zeros(len(x))
 
