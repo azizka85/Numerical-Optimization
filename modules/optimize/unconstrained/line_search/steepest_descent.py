@@ -13,13 +13,14 @@ def steepest_descent(
     p = -df(x)
 
     alpha = backtracking(f, df, 10**-4, 1., 0.5, x, p)
+    x += alpha * p
 
     while np.linalg.norm(p, ord=np.inf) > tol and iter < max_iter:
-        x += alpha * p
         p = -df(x)
 
         alpha = backtracking(f, df, 10**-4, 1., 0.5, x, p)
 
+        x += alpha * p
         iter += 1
 
     return x, iter

@@ -16,13 +16,14 @@ def newton(
     p = np.linalg.solve(d2f(x), -df(x))
 
     alpha = backtracking(f, df, 10**-4, 1., 0.5, x, p)
+    x += alpha * p
 
-    while np.linalg.norm(p, ord=np.inf) > tol and iter < max_iter:
-        x += alpha * p
+    while np.linalg.norm(p, ord=np.inf) > tol and iter < max_iter:        
         p = np.linalg.solve(d2f(x), -df(x))
 
         alpha = backtracking(f, df, 10**-4, 1., 0.5, x, p)
-
+        
+        x += alpha * p
         iter += 1
 
     return x, iter
@@ -40,13 +41,14 @@ def newton_eigenvalue_modification(
     p = eigenvalue_modification(d2f(x), df(x), 10**-8)
 
     alpha = backtracking(f, df, 10**-4, 1., 0.5, x, p)
+    x += alpha * p
 
-    while np.linalg.norm(p, ord=np.inf) > tol and iter < max_iter:
-        x += alpha * p
+    while np.linalg.norm(p, ord=np.inf) > tol and iter < max_iter:        
         p = eigenvalue_modification(d2f(x), df(x), 10**-8)
 
         alpha = backtracking(f, df, 10**-4, 1., 0.5, x, p)
 
+        x += alpha * p
         iter += 1
 
     return x, iter
