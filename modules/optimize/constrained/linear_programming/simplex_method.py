@@ -1,8 +1,6 @@
 import numpy as np
 from typing import List, Tuple
 
-epsilon = 10**-9
-
 def primal(
     c: np.ndarray[np.double],
     A: np.ndarray[np.double, np.double],
