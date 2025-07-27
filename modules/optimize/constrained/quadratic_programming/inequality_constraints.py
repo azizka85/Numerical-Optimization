@@ -257,7 +257,7 @@ def gradient_projection_method(
                 i = np.argmin(s)
                 del Wset[i]
         else:
-            t = 1.
+            t = np.inf
 
             for i in range(len(p)):
                 if p[i] > 0 and u[i] < np.inf:
@@ -265,7 +265,7 @@ def gradient_projection_method(
                 elif p[i] < 0 and l[i] > -np.inf:
                     t = min(t, (l[i] - x[i])/p[i])
 
-            if t > tol:
+            if t > tol and t < np.inf:
                 x += t*p                
                 f = False  
             else:
